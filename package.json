@@ -1,0 +1,48 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Clean Architecture Backend Skeleton in TypeScript",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node build/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1100.0",
+    "@aws-sdk/client-ses": "^3.1100.0",
+    "@aws-sdk/client-sns": "^3.1100.0",
+    "@aws-sdk/lib-storage": "^3.1100.0",
+    "@azure/communication-email": "^1.1.0",
+    "@azure/storage-blob": "^12.33.0",
+    "@google-cloud/storage": "^7.21.0",
+    "axios": "^1.20.0",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.3.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "google-auth-library": "^11.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb": "^7.5.0",
+    "mongoose": "^8.3.1",
+    "multer": "^2.2.0",
+    "nodemailer": "^9.0.5",
+    "openai": "^7.8.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/body-parser": "^1.19.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.2.0",
+    "@types/node": "^20.12.7",
+    "@types/nodemailer": "^8.0.1",
+    "@types/uuid": "^10.0.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
