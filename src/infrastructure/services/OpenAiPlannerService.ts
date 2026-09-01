@@ -45,12 +45,13 @@ export class OpenAiPlannerService {
 CRITICAL CONSTRAINT: You MUST NOT invent hotels, attractions, restaurants, coordinates, prices, or place_ids.
 You MUST ONLY select places from the provided CANDIDATE lists below.
 For every activity, the 'place_id' field MUST EXACTLY MATCH one of the place_ids provided in the candidate lists.
+You MUST generate an itinerary day object for EVERY SINGLE DAY of the trip. Do NOT generate just one day.
 
 Return ONLY a valid JSON object with the following exact structure:
 {
   "itinerary": [
     {
-      "dayNumber": 1,
+      "dayNumber": 1, // Repeat this object for Day 2, Day 3, etc. up to the total number of days
       "date": "YYYY-MM-DD",
       "theme": "Arrival & Historic Center Exploration",
       "weatherSummary": {
@@ -101,6 +102,7 @@ Return ONLY a valid JSON object with the following exact structure:
 }`;
 
     const userPrompt = `Generate a personalized ${weather.length}-day trip itinerary for ${preferences.destination}.
+CRITICAL: Your "itinerary" array MUST contain exactly ${weather.length} day objects, covering Day 1 to Day ${weather.length}.
 
 USER PREFERENCES:
 - Start Date: ${preferences.startDate} to End Date: ${preferences.endDate}
@@ -126,7 +128,7 @@ ${JSON.stringify(restaurants, null, 2)}
 BUDGET BREAKDOWN CAPS:
 ${JSON.stringify(budgetLimits.breakdown, null, 2)}
 
-Remember: DO NOT create fake place_ids or places. Only use place_ids from the candidate lists!`;
+Remember: DO NOT create fake place_ids or places. Only use place_ids from the candidate lists! Generate the full ${weather.length} days!`;
 
     try {
       const response = await this.openai.chat.completions.create({
